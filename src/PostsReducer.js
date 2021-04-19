@@ -12,13 +12,25 @@ const PostsReducer=(state=initState,action)=>{
     {
         case 'Add':
             console.log("add new post")
-            return state
+            console.log(action.payload)
+            return {
+                ...state,
+                posts:[...state.posts,action.payload]
+            }
+            
+           
         case 'Remove':
             console.log("remove a post")
-            return state
+            console.log(action.payload)
+            return {
+                ...state,posts:state.posts.filter(post=>{
+                    return post.id!==action.payload
+                })
+            }
         default:
             return state
     }
+    
 }
 
 export default PostsReducer
